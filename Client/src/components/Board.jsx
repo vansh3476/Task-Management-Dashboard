@@ -2,12 +2,12 @@ import React, { useCallback, useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import Column from "./Column";
 import { useBoard } from "../store/BoardContext";
-import AddProjectModal from "./AddProjectModal";
+import AddTaskModal from "./AddTaskModal";
 import "../styles/board.scss";
 import "../styles/header.scss";
 
 const Board = () => {
-  const { state, moveProject, addProject } = useBoard();
+  const { state, moveProject, addTask } = useBoard();
   const [modalOpen, setModalOpen] = useState(false);
 
   const onDragEnd = useCallback(
@@ -35,32 +35,26 @@ const Board = () => {
   );
 
   return (
-    <div className="techyon-board">
-      <header className="techyon-header">
-        <div className="logo">TECHYON</div>
+    <div className="task-board">
+      <header className="task-header">
+        <div className="logo">Task management software</div>
         <div className="controls"></div>
       </header>
 
       <div className="board-content">
         <div className="board-header">
-          <div className="title">Projects</div>
+          <div className="title">All Tasks</div>
           <div className="actions">
             <button className="btn-add" onClick={() => setModalOpen(true)}>
-              + Project
+              Add Task
             </button>
           </div>
         </div>
 
-        <div className="board-filters">
-          <div className="filter">
-            <div className="filter-item">All Projects</div>
-          </div>
-        </div>
-
-        <AddProjectModal
+        <AddTaskModal
           visible={modalOpen}
           onOpenChange={setModalOpen}
-          onCreate={addProject}
+          onCreate={addTask}
           onCancel={() => setModalOpen(false)}
         />
 
@@ -68,13 +62,9 @@ const Board = () => {
           <div className="board-columns">
             {state.columnOrder.map((columnId) => {
               const column = state.columns[columnId];
-              const projects = column.projectIds.map(
-                (projectId) => state.projects[projectId]
-              );
+              const tasks = column.taskIds.map((taskId) => state.tasks[taskId]);
 
-              return (
-                <Column key={column.id} column={column} projects={projects} />
-              );
+              return <Column key={column.id} column={column} tasks={tasks} />;
             })}
           </div>
         </DragDropContext>

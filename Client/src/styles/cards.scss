@@ -1,6 +1,6 @@
 @import "./variables";
 
-.techyon-board {
+.task-board {
   .project-card {
     background-color: $card-bg;
     border: 1px solid $card-border;
@@ -114,7 +114,5 @@
     &.blue-card {
       border-left: 3px solid #3498db;
     }
-
-   
   }
 }

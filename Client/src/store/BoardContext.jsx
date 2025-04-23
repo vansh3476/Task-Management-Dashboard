@@ -1,15 +1,39 @@
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { moveProject, addProject } from "../features/board/boardSlice";
+import {
+  moveProject,
+  addTask,
+  setInitialProjectes,
+} from "../features/board/boardSlice";
 
 export const BoardContext = createContext(null);
 
 export const BoardProvider = ({ children }) => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.board);
+  const [loading, setLoading] = useState(true);
+
+  const fetchtasks = async () => {
+    try {
+      setLoading(true);
+      const data = await fetch("http://localhost:3000/taskDetails", {
+        method: "GET",
+      });
+      const tasks = await data.json();
+      dispatch(setInitialProjectes({ tasks }));
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchtasks();
+  }, [dispatch]);
 
   const handleMoveProject = (
-    projectId,
+    taskId,
     sourceColumnId,
     destinationColumnId,
     sourceIndex,
@@ -17,7 +41,7 @@ export const BoardProvider = ({ children }) => {
   ) => {
     dispatch(
       moveProject({
-        projectId,
+        taskId,
         sourceColumnId,
         destinationColumnId,
         sourceIndex,
@@ -26,8 +50,8 @@ export const BoardProvider = ({ children }) => {
     );
   };
 
-  const handleAddProject = ({ project, columnId }) => {
-    dispatch(addProject({ project, columnId: project.columnId }));
+  const handleAddProject = ({ Task, columnId }) => {
+    dispatch(addTask({ Task, columnId: Task.columnId }));
   };
 
   return (
@@ -35,10 +59,11 @@ export const BoardProvider = ({ children }) => {
       value={{
         state,
         moveProject: handleMoveProject,
-        addProject: handleAddProject,
+        addTask: handleAddProject,
+        loading: loading,
       }}
     >
-      {children}
+      {loading ? <></> : children}
     </BoardContext.Provider>
   );
 };

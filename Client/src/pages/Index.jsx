@@ -1,8 +1,8 @@
 import React from "react";
-import TechyonApp from "../components/TechyonApp";
+import TaskApp from "../components/TaskApp";
 
 const Index = () => {
-  return <TechyonApp />;
+  return <TaskApp />;
 };
 
 export default Index;

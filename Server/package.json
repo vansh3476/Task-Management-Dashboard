@@ -1,0 +1,15 @@
+{
+  "name": "backened",
+  "version": "1.0.0",
+  "description": "This is backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "json-server --watch projects.json --port 3000"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "json-server": "^1.0.0-beta.3"
+  }
+}

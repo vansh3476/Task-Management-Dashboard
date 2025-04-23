@@ -5,11 +5,6 @@ import styles from "../styles/ProjectCard.module.scss";
 import { Folder } from "lucide-react";
 
 const ProjectCard = ({ project, index }) => {
-  const completionPercentage =
-    project.tasks?.total > 0
-      ? Math.round((project.tasks?.completed / project.tasks?.total) * 100)
-      : 0;
-
   return (
     <Draggable draggableId={project.id} index={index}>
       {(provided, snapshot) => (
@@ -29,16 +24,6 @@ const ProjectCard = ({ project, index }) => {
               <span>{project.name} </span>
             </div>
             <div className={styles.projectPriority}>{project.priority}</div>
-          </div>
-
-          <div className={styles.taskProgress}>
-            <div className={styles.progressBar}>
-              <div
-                className={styles.progressBarFill}
-                style={{ width: `${completionPercentage}%` }}
-              ></div>
-            </div>
-            <span className={styles.progressText}>{completionPercentage}%</span>
           </div>
 
           <div className={styles.cardMeta}>
@@ -62,13 +47,6 @@ const ProjectCard = ({ project, index }) => {
                   +{(project.assignees || []).length - 3}
                 </div>
               )}
-            </div>
-
-            <div className={styles.taskCount}>
-              <span>
-                {project.tasks?.completed}/{project.tasks?.total}
-              </span>
-              <span className={styles.taskLabel}>Tasks</span>
             </div>
           </div>
         </div>

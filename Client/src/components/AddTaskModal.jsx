@@ -1,11 +1,11 @@
-// components/CreateProjectModal.jsx
+// components/CreateTaskModal.jsx
 import React from "react";
 import { Modal, Form, Input, Select, DatePicker, InputNumber } from "antd";
 
 const { Option } = Select;
 
 const COLUMN_OPTIONS = [
-  { value: "column-1", label: "Backlog" },
+  { value: "column-1", label: "todo" },
   { value: "column-2", label: "In Progress" },
   { value: "column-3", label: "Review" },
   { value: "column-4", label: "Completed" },
@@ -19,36 +19,26 @@ const PRIORITY_OPTIONS = [
 
 const USERS = Array.from({ length: 10 }, (_, i) => `user-${i + 1}`);
 
-const AddProjectModal = ({ visible, onCancel, onOpenChange, onCreate }) => {
+const AddTaskModal = ({ visible, onCancel, onOpenChange, onCreate }) => {
   const [form] = Form.useForm();
 
   const handleOk = () => {
     form.validateFields().then((values) => {
-      const {
-        status,
-        users,
-        totalTasks,
-        completedTasks,
-        dueDate,
-        startDate,
-        ...rest
-      } = values;
-      console.log("rest111", rest);
+      const { status, users, dueDate, startDate, ...rest } = values;
+
       const assignees = USERS.filter((user) => users.includes(user)).map(
         (user) => ({ id: user, name: user })
       );
-      const tasks = { total: totalTasks, completed: completedTasks };
-      const project = {
+      const Task = {
         ...rest,
         assignees,
-        tasks,
+        id: Math.random().toString(),
         columnId: status,
         dueDate: dueDate.format("DD/MM/YYYY"),
         startDate: startDate.format("DD/MM/YYYY"),
       };
       onCreate({
-        project,
-        id: Math.random().toString(),
+        Task,
       });
       onOpenChange();
       form.resetFields();
@@ -57,7 +47,7 @@ const AddProjectModal = ({ visible, onCancel, onOpenChange, onCreate }) => {
 
   return (
     <Modal
-      title="Create Project"
+      title={<h2>Add New Task</h2>}
       open={visible}
       onCancel={onCancel}
       onOk={handleOk}
@@ -66,9 +56,9 @@ const AddProjectModal = ({ visible, onCancel, onOpenChange, onCreate }) => {
     >
       <Form layout="vertical" form={form}>
         <Form.Item
-          label="Project Name"
+          label="Task Name"
           name="name"
-          rules={[{ required: true, message: "Please enter the project name" }]}
+          rules={[{ required: true, message: "Please enter the Task name" }]}
         >
           <Input />
         </Form.Item>
@@ -129,24 +119,9 @@ const AddProjectModal = ({ visible, onCancel, onOpenChange, onCreate }) => {
             ))}
           </Select>
         </Form.Item>
-        <Form.Item
-          name="totalTasks"
-          label="Total Tasks"
-          rules={[{ required: true }]}
-        >
-          <InputNumber min={0} style={{ width: "100%" }} />
-        </Form.Item>
-
-        <Form.Item
-          name="completedTasks"
-          label="Completed Tasks"
-          rules={[{ required: true }]}
-        >
-          <InputNumber min={0} style={{ width: "100%" }} />
-        </Form.Item>
       </Form>
     </Modal>
   );
 };
 
-export default AddProjectModal;
+export default AddTaskModal;

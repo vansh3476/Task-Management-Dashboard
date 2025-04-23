@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import { BoardProvider } from "../store/BoardContext";
 import Board from "./Board";
 
-const TechyonApp = () => {
+const TaskApp = () => {
   return (
     <BoardProvider>
       <Board />
@@ -11,4 +11,4 @@ const TechyonApp = () => {
   );
 };
 
-export default TechyonApp;
+export default TaskApp;

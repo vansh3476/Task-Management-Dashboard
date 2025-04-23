@@ -1,7 +1,7 @@
 @use "./variables" as *;
 
-.techyon-board {
-  .techyon-header {
+.task-board {
+  .task-header {
     background-color: $header-bg;
     color: $white;
     padding: 10px;
