@@ -1,0 +1,155 @@
+@use "./variables" as *;
+
+.techyon-board {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  .board-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 1rem;
+    background-color: $board-bg;
+    overflow-y: auto;
+
+    .board-header {
+      display: flex;
+      column-gap: 20px;
+      align-items: center;
+      margin-bottom: 1rem;
+
+      .title {
+        font-size: 32px;
+        font-weight: 500;
+        color: #404040;
+      }
+
+      .actions {
+        display: flex;
+        gap: 0.5rem;
+
+        .btn-add {
+          background-color: #2d446e;
+          color: white;
+          border: none;
+          border-radius: 4px;
+          text-align: center;
+          gap: 0.5rem;
+          width: 130px;
+          height: 44px;
+          cursor: pointer;
+          font-weight: 700;
+          font-size: 16px;
+          border-radius: 8px;
+
+          &:hover {
+            background-color: #2d446e;
+          }
+        }
+      }
+    }
+
+    .board-filters {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+
+      .filter {
+        display: flex;
+        gap: 0.5rem;
+
+        .filter-item {
+          padding: 0.25rem 0.5rem;
+          border-radius: 4px;
+          font-size: 20px;
+          display: flex;
+          font-weight: 600;
+          align-items: center;
+          gap: 0.25rem;
+          color: #2d446e;
+        }
+      }
+
+      .view-toggle {
+        display: flex;
+        gap: 0.25rem;
+
+        button {
+          background: white;
+          border: 1px solid $card-border;
+          padding: 0.25rem;
+          border-radius: 4px;
+          cursor: pointer;
+
+          &.active {
+            background-color: #e6e6e6;
+          }
+        }
+      }
+    }
+    .board-columns {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      min-height: max-content;
+      flex: 1;
+      padding-bottom: 1rem;
+      width: max-content;
+      padding: 20px;
+      border: 1px solid #f1f1f1;
+      background: #ffffff;
+      border-radius: 8px;
+
+      .column {
+        background-color: #f9f9f9;
+        border-radius: 6px;
+        min-width: 280px;
+        width: 280px;
+        display: flex;
+        flex-direction: column;
+        max-height: 100%;
+
+        .column-header {
+          padding: 1rem;
+          font-weight: 600;
+          border-bottom: 1px solid $card-border;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          .column-title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+          }
+
+          &.backlog {
+            border-top: 3px solid #3498db;
+          }
+
+          &.in-progress {
+            border-top: 3px solid $warning-color;
+          }
+
+          &.review {
+            border-top: 3px solid $info-color;
+          }
+
+          &.completed {
+            border-top: 3px solid $success-color;
+          }
+        }
+
+        .column-content {
+          padding: 0.5rem;
+          overflow-y: auto;
+          flex: 1;
+          border-radius: 8px;
+        }
+      }
+    }
+  }
+}

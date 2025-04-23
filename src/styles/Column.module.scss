@@ -1,0 +1,80 @@
+@use "../styles/variables.scss" as *;
+
+.column {
+  border-radius: 6px;
+  min-width: 280px;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+
+  .columnHeader {
+    padding: 2px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 6px;
+    .labelWrapper {
+      width: max-content;
+      padding: 4px 8px;
+      border-radius: 8px;
+      .columnTitle {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #ffffff;
+        font-size: 12px;
+
+        .count {
+          display: inline-block;
+          border-radius: 12px;
+          padding: 2px 8px;
+          font-size: 12px;
+          color: #e6e6e6;
+          font-weight: 500;
+        }
+      }
+
+      &.backlog {
+        background-color: $gray;
+      }
+
+      &.in-progress {
+        background-color: $blue;
+      }
+
+      &.review {
+        background-color: $darkGray;
+      }
+
+      &.completed {
+        background-color: $green;
+      }
+    }
+  }
+
+  .columnContent {
+    padding: 0.5rem 0rem;
+    overflow-y: auto;
+    flex: 1;
+    .footerLinks {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding-top: 12px;
+      padding-right: 12px;
+    }
+
+    .footerLink {
+      color: #1677ff;
+      font-size: 12px;
+      text-decoration: underline;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

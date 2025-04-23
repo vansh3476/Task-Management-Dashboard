@@ -1,0 +1,70 @@
+.taskCard {
+  background-color: #fff;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.taskName {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+}
+
+.taskCode {
+  font-size: 11px;
+  color: #777;
+  margin-top: 2px;
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.metaInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dueDate,
+.priority {
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.assignees {
+  display: flex;
+}
+
+.avatarWrapper {
+  margin-right: -6px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  overflow: hidden;
+}

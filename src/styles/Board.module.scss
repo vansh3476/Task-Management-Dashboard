@@ -1,0 +1,17 @@
+@import "./variables";
+
+.container {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.divider {
+  width: 100%;
+  height: 32px;
+}
+
+.tasksSection {
+  margin-bottom: 40px;
+}

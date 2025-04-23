@@ -1,0 +1,68 @@
+@use "./variables.scss";
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0.5rem 0 1rem;
+}
+
+.formRow {
+  display: flex;
+  gap: 1rem;
+}
+
+.formGroup {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.label {
+  font-size: 0.875rem;
+  color: #555;
+  margin-bottom: 0.25rem;
+}
+
+.select {
+  width: 100%;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.375rem;
+  padding: 0.5rem;
+  background-color: white;
+  font-size: 0.875rem;
+
+  &:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 1px rgba(#3498db, 0.3);
+  }
+}
+
+.colorOptions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.colorOption {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px #e0e0e0;
+
+  &.selected {
+    box-shadow: 0 0 0 2px #3498db;
+  }
+
+  &.blue-card {
+    background-color: #3498db;
+  }
+
+  &.green-card {
+    background-color: #fff;
+  }
+}
