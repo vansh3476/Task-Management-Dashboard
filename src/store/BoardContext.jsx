@@ -27,7 +27,6 @@ export const BoardProvider = ({ children }) => {
   };
 
   const handleAddProject = ({ project, columnId }) => {
-    console.log("project, columnId", project, columnId);
     dispatch(addProject({ project, columnId: project.columnId }));
   };
 

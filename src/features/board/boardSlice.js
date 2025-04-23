@@ -338,23 +338,23 @@ const boardSlice = createSlice({
         destinationIndex,
       } = action.payload;
 
-      // Remove from source column
       const sourceProjectIds = Array.from(
         state.columns[sourceColumnId].projectIds
       );
       sourceProjectIds.splice(sourceIndex, 1);
 
-      // Add to destination column
-      const destinationProjectIds =
-        sourceColumnId === destinationColumnId
-          ? sourceProjectIds // Same column
-          : Array.from(state.columns[destinationColumnId].projectIds);
+      if (sourceColumnId === destinationColumnId) {
+        sourceProjectIds.splice(destinationIndex, 0, projectId);
+        state.columns[sourceColumnId].projectIds = sourceProjectIds;
+      } else {
+        const destinationProjectIds = Array.from(
+          state.columns[destinationColumnId].projectIds
+        );
+        destinationProjectIds.splice(destinationIndex, 0, projectId);
 
-      destinationProjectIds.splice(destinationIndex, 0, projectId);
-
-      // Update state
-      state.columns[sourceColumnId].projectIds = sourceProjectIds;
-      state.columns[destinationColumnId].projectIds = destinationProjectIds;
+        state.columns[sourceColumnId].projectIds = sourceProjectIds;
+        state.columns[destinationColumnId].projectIds = destinationProjectIds;
+      }
     },
 
     addProject: (state, action) => {

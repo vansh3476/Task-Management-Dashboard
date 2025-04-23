@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Droppable } from "react-beautiful-dnd";
 import ProjectCard from "./ProjectCard";
 import styles from "../styles/Column.module.scss";
 
 const Column = ({ column, projects: initialProjectes }) => {
   const [projects, setProjects] = useState(initialProjectes.slice(0, 3));
-  console.log("projects", initialProjectes, projects);
+  const [viewMore, setViewMore] = useState(false);
+
+  useEffect(() => {
+    setProjects(viewMore ? initialProjectes : initialProjectes.slice(0, 3));
+  }, [initialProjectes]);
+
+  const handleViewMore = (isMore) => {
+    setViewMore(isMore);
+    setProjects(isMore ? initialProjectes : initialProjectes.slice(0, 3));
+  };
   return (
     <div className={styles.column}>
       <div className={`${styles.columnHeader}`}>
@@ -35,15 +44,9 @@ const Column = ({ column, projects: initialProjectes }) => {
             <div className={styles.footerLinks}>
               <div
                 className={styles.footerLink}
-                onClick={() =>
-                  initialProjectes.length === projects.length
-                    ? setProjects(initialProjectes.slice(0, 3))
-                    : setProjects(initialProjectes)
-                }
+                onClick={() => handleViewMore(!viewMore)}
               >
-                {initialProjectes.length === projects.length
-                  ? "view less"
-                  : "view more"}
+                {viewMore ? "view less" : "view more"}
               </div>
             </div>
             {provided.placeholder}
