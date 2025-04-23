@@ -26,9 +26,9 @@ This is a Kanban-style task management dashboard built using **React**, **Ant De
 
 1. Clone the repository:
 
-git clone https://github.com/vansh3476/Task-Management-Dashboard
+   git clone https://github.com/vansh3476/Task-Management-Dashboard
 
-cd Task-Management-Dashboard
+   cd Task-Management-Dashboard
 
 2. Install dependencies:
    npm install
